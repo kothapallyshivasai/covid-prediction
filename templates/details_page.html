@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="icon" type="image/x-icon" href="{% static 'images/coronacovidimg.jpg' %}">
+    <title>Covid Details</title>
+    {% include "includes.html" %}
+    <style>
+        body{
+            background-image: url("/static/images/back1.png");
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+    </style>
+</head>
+<body>
+    <h1 class="text-center my-3" style="color: white;">Enter your details</h1>    
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <div class="card bg-dark text-white">
+                    <div class="card-body">
+                        <form action="/covid/results" method="post">
+                            {% csrf_token %}
+                            
+                            <div class="mb-3">
+                                <label for="">Do you have breathing problem ?</label>
+                                <select class="form-select" name="breathing_problem" id="breathing_problem">
+                                    <option value="True" selected>Yes</option>
+                                    <option value="False">No</option>
+                                </select>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="">Do you have fever ?</label>
+                                <select class="form-select" name="fever" id="fever">
+                                    <option value="True" selected>Yes</option>
+                                    <option value="False">No</option>
+                                </select>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="">Do you have dry cough ?</label>
+                                <select class="form-select" name="dry_cough" id="dry_cough">
+                                    <option value="True" selected>Yes</option>
+                                    <option value="False">No</option>
+                                </select>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="">Do you have sore throat ?</label>
+                                <select class="form-select" name="sore_throat" id="sore_throat">
+                                    <option value="True" selected>Yes</option>
+                                    <option value="False">No</option>
+                                </select>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="">Do you have running nose ?</label>
+                                <select class="form-select" name="running_nose" id="running_nose">
+                                    <option value="True" selected>Yes</option>
+                                    <option value="False">No</option>
+                                </select>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="">Do you have asthma ?</label>
+                                <select class="form-select" name="asthma" id="asthma">
+                                    <option value="True" selected>Yes</option>
+                                    <option value="False">No</option>
+                                </select>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="">Do you have chronic lung disease ?</label>
+                                <select class="form-select" name="chronic_lung_disease" id="chronic_lung_disease">
+                                    <option value="True" selected>Yes</option>
+                                    <option value="False">No</option>
+                                </select>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="">Do you have headache ?</label>
+                                <select class="form-select" name="headache" id="headache">
+                                    <option value="True" selected>Yes</option>
+                                    <option value="False">No</option>
+                                </select>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="">Do you have heart disease ?</label>
+                                <select class="form-select" name="heart_disease" id="heart_disease">
+                                    <option value="True" selected>Yes</option>
+                                    <option value="False">No</option>
+                                </select>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="">Do you have diabetes ?</label>
+                                <select class="form-select" name="diabetes" id="diabetes">
+                                    <option value="True" selected>Yes</option>
+                                    <option value="False">No</option>
+                                </select>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="">Do you have hyper tension ?</label>
+                                <select class="form-select" name="hyper_tension" id="hyper_tension">
+                                    <option value="True" selected>Yes</option>
+                                    <option value="False">No</option>
+                                </select>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="">Do you have fatigue ?</label>
+                                <select class="form-select" name="fatigue" id="fatigue">
+                                    <option value="True" selected>Yes</option>
+                                    <option value="False">No</option>
+                                </select>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="">Do you have gastrointestinal ?</label>
+                                <select class="form-select" name="gastrointestinal" id="gastrointestinal">
+                                    <option value="True" selected>Yes</option>
+                                    <option value="False">No</option>
+                                </select>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="">Did you travel abroad ?</label>
+                                <select class="form-select" name="abroad_travel" id="abroad_travel">
+                                    <option value="True" selected>Yes</option>
+                                    <option value="False">No</option>
+                                </select>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="">Do you have any contact with covid patients ?</label>
+                                <select class="form-select" name="contact_with_covid_patient" id="contact_with_covid_patient">
+                                    <option value="True" selected>Yes</option>
+                                    <option value="False">No</option>
+                                </select>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="">Do you have attended any large gatherings ?</label>
+                                <select class="form-select" name="attended_large_gathering" id="attended_large_gathering">
+                                    <option value="True" selected>Yes</option>
+                                    <option value="False">No</option>
+                                </select>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="">Do you have visited any public exposed places ?</label>
+                                <select class="form-select" name="visited_public_exposed_places" id="visited_public_exposed_places">
+                                    <option value="True" selected>Yes</option>
+                                    <option value="False">No</option>
+                                </select>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="">Do you have any member of family who works in a public area ?</label>
+                                <select class="form-select" name="family_working_in_public_exposed_places" id="family_working_in_public_exposed_places">
+                                    <option value="True" selected>Yes</option>
+                                    <option value="False">No</option>
+                                </select>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="">Do you wear mask ?</label>
+                                <select class="form-select" name="wearing_masks" id="wearing_masks">
+                                    <option value="True" selected>Yes</option>
+                                    <option value="False">No</option>
+                                </select>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="">Do you have sanitization from market ?</label>
+                                <select class="form-select" name="sanitization_from_market" id="sanitization_from_market">
+                                    <option value="True" selected>Yes</option>
+                                    <option value="False">No</option>
+                                </select>
+                            </div>
+                            
+                            <div class="container text-center">
+                                <button class="btn btn-success">
+                                    Submit details
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container pt-2"></div>
+</body>
+</html>

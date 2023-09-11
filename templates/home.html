@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="icon" type="image/x-icon" href="{% static 'images/coronacovidimg.jpg' %}">
+    <title>Home page</title>
+    {% include "includes.html" %}
+</head>
+<body>
+  {% include "navbar.html" %}
+  <div class="container-fluid pt-5">
+    <div class="row">
+        <div class="col-xl-7 offset-xl-1 col-12">
+          <h4>
+            -> This is a website designed for analyzing the details given by the users and predicting the possibility of the user is suffering from covid or not.
+            <br>
+            -> This website can be used by multiple platforms like
+            <h5>
+              <ul>
+                <li>Patients.</li>
+                <li>Gateway devices.</li>
+                <li>Private hospitals.</li>
+                <li>Government centers.</li>
+              </ul>
+            </h5>
+            <h4>-> This website is developed by using the following utilities</h4>
+            <h5>
+              <ul>
+                <li>Django.</li>
+                <li>Machine Learning.</li>
+                <li>Html.</li>
+                <li>Bootstrap.</li>
+                <li>Csv file of covid patients.</li>
+              </ul>
+            </h5>
+          </h4>
+          <h4>
+            -> This website is reactive try minimizing <br>
+            -> By this website it would be easier to predict the covid instead of taking the <b>COVID-19</b> test.
+            <br>
+            -> Coronavirus disease (COVID-19) is an infectious disease caused by the dangerous SARS-CoV-2 virus.
+          </h4>
+        </div>
+        <div class="col-xl-3 col-12 text-center">
+          <img src="/static/images/covidresults.png" alt="This image is about covid" class="img-fluid">
+        </div>
+    </div>
+  </div>
+</body>
+</html>
