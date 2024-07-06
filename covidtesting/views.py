@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from .models import CovidDetails
 import tensorflow as tf
+from django.db.models import Count
+import json
 
 # Create your views here.
 def home_page(request):
@@ -36,7 +38,10 @@ def validate_details(request):
         covid_details.family_working_in_public_exposed_places = request.POST.get("family_working_in_public_exposed_places")
         covid_details.wearing_masks = request.POST.get("wearing_masks")
         covid_details.sanitization_from_market = request.POST.get("sanitization_from_market")
-
+        covid_details.latitude = request.POST.get("latitude", "None")
+        covid_details.longitude = request.POST.get("longitude", "None")
+        covid_details.area_name = request.POST.get("area_name", "None")
+        
         symptoms = [
             request.POST.get('breathing_problem'),
             request.POST.get('fever'),
@@ -94,3 +99,12 @@ def graph(request):
     non_covid_patients_count = CovidDetails.objects.filter(covid_19 = False)
     return render(request, "graph.html", { "covid_patients_count": covid_patients_count,
                                            "non_covid_patients_count": non_covid_patients_count})
+
+def location_bar_chart(request):
+    area_counts = CovidDetails.objects.filter(covid_19=True).values('area_name').annotate(count=Count('id')).order_by('area_name')
+
+    area_dict = {item['area_name']: item['count'] for item in area_counts}
+
+    return render(request, "location_bar.html", {
+        "area_dict": json.dumps(area_dict)
+    })

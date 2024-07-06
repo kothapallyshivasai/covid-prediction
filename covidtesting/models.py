@@ -2,14 +2,6 @@ from django.db import models
 
 # Create your models here.
 class CovidDetails(models.Model):
-# Breathing Problem,Fever,Dry Cough,Sore throat,Running Nose,Asthma,Chronic Lung Disease,Headache,
-
-# Heart Disease,Diabetes,Hyper Tension,Fatigue,Gastrointestinal,Abroad travel,Contact with COVID Patient,
-
-# Attended Large Gathering,Visited Public Exposed Places,Family working in Public Exposed Places,Wearing Masks,
-
-# Sanitization from Market,COVID-19
-
     breathing_problem = models.BooleanField(null=False)
     fever = models.BooleanField(null=False)
     dry_cough = models.BooleanField(null=False)
@@ -31,3 +23,6 @@ class CovidDetails(models.Model):
     wearing_masks = models.BooleanField(null=False)
     sanitization_from_market = models.BooleanField(null=False)
     covid_19 = models.BooleanField(null=False)
+    latitude = models.CharField(max_length=100)
+    longitude = models.CharField(max_length=100)
+    area_name = models.CharField(max_length=100)

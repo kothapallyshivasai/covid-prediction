@@ -15,6 +15,51 @@
             background-size: cover;
         }
     </style>
+    <script>
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition, showError);
+            } else {
+                alert("Geolocation is not supported by this browser.");
+            }
+        }
+    
+        function showPosition(position) {
+            let lat = position.coords.latitude;
+            let lon = position.coords.longitude;
+            document.getElementById('latitude').value = lat;
+            document.getElementById('longitude').value = lon;
+            fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}`)
+            .then(response => response.json())
+            .then(data => {
+                let areaName = data.address.city || data.address.town || data.address.village || data.address.hamlet;
+                document.getElementById('area_name').value = areaName;
+                console.log(data)
+                console.log(areaName)
+            })
+            .catch(error => console.log('Error:', error));
+        }
+    
+        function showError(error) {
+            switch (error.code) {
+                case error.PERMISSION_DENIED:
+                    alert("User denied the request for Geolocation.");
+                    break;
+                case error.POSITION_UNAVAILABLE:
+                    alert("Location information is unavailable.");
+                    break;
+                case error.TIMEOUT:
+                    alert("The request to get user location timed out.");
+                    break;
+                case error.UNKNOWN_ERROR:
+                    alert("An unknown error occurred.");
+                    break;
+            }
+        }
+    
+        window.onload = getLocation;
+    </script>
+    
 </head>
 <body>
     <h1 class="text-center my-3" style="color: white;">Enter your details</h1>    
@@ -185,6 +230,10 @@
                                     <option value="False">No</option>
                                 </select>
                             </div>
+
+                            <input type="hidden" name="latitude" id="latitude">
+                            <input type="hidden" name="longitude" id="longitude">
+                            <input type="hidden" name="area_name" id="area_name">
                             
                             <div class="container text-center">
                                 <button class="btn btn-success">
